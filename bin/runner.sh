@@ -24,5 +24,6 @@ git fetch --all \
     && git checkout ${TARGET_GIT_REV} \
     && npm ci \
     && npm run ${NPM_BUILD_CMD} \
-    && tar -czvf /app/output/${DIST_DIR_NAME}.${TARGET_GIT_REV}.tar.gz ${DIST_DIR_NAME} \
-    && git reset --hard
+    && tar -czvf /app/output/${DIST_DIR_NAME}.${TARGET_GIT_REV}.tar.gz ${DIST_DIR_NAME}
+
+git reset --hard
