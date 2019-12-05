@@ -1,0 +1,2 @@
+prefer-offline = true
+cache = "/app/npm-cache"

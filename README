@@ -1,0 +1,17 @@
+This is an image to perform Angular builds.
+In the future it will also include a headless Chrome executable to run unit tests.
+
+Running image:
+  Environment variables:
+    - NPM_BUILD_CMD:            the arg given to 'npm run'
+    - DIST_DIR_NAME:            the expected directory name for the completed Angular build
+    - SSH_KEY:                  the name of the ssh key to use
+
+  Volumes:
+    - /app/output:              where the tarballed build will be output to
+    - /app/repo:                where a copy of the repository to build from is expected
+    - /app/npm-cache            used for the npm package cache, so that downloads can be aggresively cached
+    - /home/node/.ssh:          where ssh keys will be looked for
+
+  Argument:
+    - 1                         Hash of the git commit to build from
