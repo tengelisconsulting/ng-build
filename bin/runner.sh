@@ -13,17 +13,17 @@ echo "expecting file output at ${DIST_DIR_NAME}"
 echo "using ssh key ${SSH_KEY}"
 
 eval "$(ssh-agent -s)"
-ssh-add ~/.ssh/${SSH_KEY}
+ssh-add /root/.ssh/${SSH_KEY}
 
 cd /app/repo
-
 git branch -r | grep -v '\->' | while read remote; do git branch --track "${remote#origin/}" "$remote"; done
 git fetch --all \
     && git checkout master \
     && git pull --all \
-    && git checkout ${TARGET_GIT_REV} \
-    && npm ci \
-    && npm run ${NPM_BUILD_CMD} \
-    && tar -czvf /app/output/${DIST_DIR_NAME}.${TARGET_GIT_REV}.tar.gz ${DIST_DIR_NAME}
+    && git checkout ${TARGET_GIT_REV}
+
+npm run ${NPM_BUILD_CMD}
+
+tar -czvf /app/output/${DIST_DIR_NAME}.${TARGET_GIT_REV}.tar.gz ${DIST_DIR_NAME}
 
 git reset --hard
