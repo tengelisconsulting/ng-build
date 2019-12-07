@@ -17,6 +17,9 @@ ssh-add /root/.ssh/${SSH_KEY}
 
 cd /app/repo
 git branch -r | grep -v '\->' | while read remote; do git branch --track "${remote#origin/}" "$remote"; done
+
+set -e
+
 git fetch --all \
     && git checkout master \
     && git pull --all \
