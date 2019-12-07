@@ -6,12 +6,13 @@ Running image:
     - NPM_BUILD_CMD:            the arg given to 'npm run'
     - DIST_DIR_NAME:            the expected directory name for the completed Angular build
     - SSH_KEY:                  the name of the ssh key to use
+    - REPO_REMOTE:              url to clone from
 
   Volumes:
     - /app/output:              where the tarballed build will be output to
     - /app/repo:                where a copy of the repository to build from is expected
     - /app/npm-cache            used for the npm package cache, so that downloads can be aggresively cached
-    - /home/node/.ssh:          where ssh keys will be looked for
+    - /root/.ssh:          where ssh keys will be looked for
 
   Argument:
     - 1                         Hash of the git commit to build from

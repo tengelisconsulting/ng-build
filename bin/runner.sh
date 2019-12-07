@@ -16,6 +16,9 @@ eval "$(ssh-agent -s)"
 ssh-add /root/.ssh/${SSH_KEY}
 
 cd /app/repo
+if [ ! -d ./.git ]; then
+    git clone ${REPO_REMOTE} .
+fi
 git branch -r | grep -v '\->' | while read remote; do git branch --track "${remote#origin/}" "$remote"; done
 
 set -e
